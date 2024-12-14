@@ -72,7 +72,7 @@ namespace Enviroment
             
             //siginBackground
             roundPanel signBackground = new roundPanel(54, Color.Azure, Color.Azure);
-            signBackground.SetBounds(160,390,250,54);
+            signBackground.SetBounds(175,390,250,54);
             this.Controls.Add(signBackground);
             
             
