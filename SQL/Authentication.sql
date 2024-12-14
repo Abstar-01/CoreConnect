@@ -1,0 +1,10 @@
+CREATE PROCEDURE SPuserNameIdentifier
+@name VARCHAR(100),
+@State INT OUTPUT
+AS
+BEGIN
+	SET @State = CASE
+	 WHEN EXISTS (SELECT * FROM Users WHERE Username = @name) THEN 1
+	 ELSE 0
+	END
+END
