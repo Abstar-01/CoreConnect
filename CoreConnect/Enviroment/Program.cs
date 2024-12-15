@@ -16,7 +16,7 @@ namespace Enviroment
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginFrame());
+            Application.Run(new ApplicationLoader());
         }
     }
 }
