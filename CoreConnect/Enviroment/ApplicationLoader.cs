@@ -10,6 +10,10 @@ namespace Enviroment {
     
     public partial class ApplicationLoader : Form {
         
+        private roundPanel loader = new roundPanel(20, Color.FromArgb(133, 2, 254), Color.FromArgb(255, 33, 100));
+        int[] load = {300, 100, 200, 400};
+        private int count = 0, x = 20;
+        private Timer timer;
         public ApplicationLoader() {
             InitializeComponent();
             Size = new Size(680,510);
@@ -44,6 +48,9 @@ namespace Enviroment {
             Title2.Font = new Font("Felix Titling", 48, FontStyle.Bold);
             Controls.Add(Title2);
             
+            loader.SetBounds(100,350,0,20);
+            Controls.Add(loader);
+            
             Thread thread = new Thread(() => {
                 Thread.Sleep(8650);
                 BackColor = Color.White;
@@ -57,16 +64,12 @@ namespace Enviroment {
                 Thread.Sleep(500);
                 Title2.SetBounds(280, 200, 380, 120);
                 
-                
+                Thread.Sleep(500);
+                loader.SetBounds(100,400,20,20);
             });
             thread.Start();
             
-            Timer timer = new Timer {
-                Interval = 50
-            };
-            
             Controls.Add(background);
-            
         }
         private void CustomForm_Load(object sender, EventArgs e) {
             int radius = 80;
@@ -80,26 +83,20 @@ namespace Enviroment {
             
             this.Region = new Region(path);
         }
-        protected override CreateParams CreateParams
-        {
-            get
-            {
+        protected override CreateParams CreateParams {
+            get {
                 CreateParams cp = base.CreateParams;
                 cp.ExStyle |= 0x02000000; // WS_EX_COMPOSITED: Enables double buffering
                 cp.Style |= 0x02000000;  // WS_CLIPCHILDREN: Avoid redrawing child controls
                 return cp;
             }
         }
-    }
-    class LoagerPanel : roundPanel {
-    
-        private roundPanel loader = new roundPanel(20, Color.FromArgb(133, 2, 254), Color.FromArgb(255, 33, 100));
         
-        public LoagerPanel(int r, Color s, Color e) : base(r,s,e ) {
-            this.DoubleBuffered = true;
-            loader.SetBounds(0,20,50,50);
-            
-            
+        private void UpdateLoaderBounds()
+        {
+            this.SuspendLayout(); // Temporarily suspend layout updates
+            loader.SetBounds(0, 20, x, 20);
+            this.ResumeLayout(false); // Resume layout updates
         }
     }
 }

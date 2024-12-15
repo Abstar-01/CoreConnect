@@ -5,6 +5,7 @@ using System.Net.Mime;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using AForge.Imaging.Filters;
+using ContentAlignment = System.Drawing.ContentAlignment;
 
 namespace Enviroment {
     public class LoginPanelFrameWork : roundPanel {
@@ -14,8 +15,20 @@ namespace Enviroment {
             this.BackgroundImage = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Images & Videos\\LoginBackground.jpg");
             this.BackgroundImageLayout = ImageLayout.None;
 
+            // Greating
+            roundPanel greatingBackground = new roundPanel(127, Color.White, Color.White);
+            greatingBackground.SetBounds(93, 90, 380, 127);
+            PictureBox greating = new PictureBox {
+                Size = new Size(350,113),
+                Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Images & Videos\\Hello Slider T.gif")
+            };
+            greating.SetBounds(15,7,350,113);
+            greatingBackground.Controls.Add(greating);
+            Controls.Add(greatingBackground);
+            
+            
             roundPanel Logo = new roundPanel(350,Color.Transparent,Color.Transparent);
-            Logo.SetBounds(100,200,350,350);
+            Logo.SetBounds(100,240,350,350);
             Logo.BackgroundImage = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Images & Videos\\CONNECT.png");
             this.Controls.Add(Logo);
 
