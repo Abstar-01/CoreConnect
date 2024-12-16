@@ -17,7 +17,7 @@ namespace Enviroment {
 
             // Greating
             roundPanel greatingBackground = new roundPanel(127, Color.White, Color.White);
-            greatingBackground.SetBounds(93, 90, 380, 127);
+            greatingBackground.SetBounds(93, 50, 380, 127);
             PictureBox greating = new PictureBox {
                 Size = new Size(350,113),
                 Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Images & Videos\\Hello Slider T.gif")
@@ -28,15 +28,35 @@ namespace Enviroment {
             
             
             roundPanel Logo = new roundPanel(350,Color.Transparent,Color.Transparent);
-            Logo.SetBounds(100,240,350,350);
+            Logo.SetBounds(-50,400,350,350);
             Logo.BackgroundImage = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Images & Videos\\CONNECT.png");
             this.Controls.Add(Logo);
 
+            roundPanel LogoHandler = new roundPanel(650, Color.White, Color.White);
+            LogoHandler.SetBounds(-250,350,650,650);
+            this.Controls.Add(LogoHandler);
+            
+            roundPanel LoginTitleBackground = new roundPanel(50, Color.FromArgb(56, 255, 255, 255), Color.FromArgb(89, 255, 228, 196));
+            LoginTitleBackground.SetBounds(570, -50, 600, 250);
+            LoginTitleBackground.BackColor = Color.Transparent;
+            this.Controls.Add(LoginTitleBackground);
+            
+            Label LoginTitle = new Label();
+            LoginTitle.Text = "LOGIN";
+            LoginTitle.SetBounds(100,100,400,150);
+            LoginTitle.ForeColor = Color.Transparent;
+            LoginTitle.Font = new Font("Supreme Extrabold", 80, FontStyle.Bold );
+            LoginTitleBackground.Controls.Add(LoginTitle);
+            
             LoginTab tab = new LoginTab(50, Color.FromArgb(56, 255, 255, 255), Color.FromArgb(89, 255, 228, 196));
-            tab.SetBounds(600, 100, 600, 500);
+            tab.SetBounds(570, 220, 600, 380);
             tab.BackColor = Color.Transparent;
             this.Controls.Add(tab);
-            
+
+            roundPanel FreePanel = new roundPanel(50,Color.FromArgb(56, 255, 255, 255),Color.FromArgb(56, 255, 255, 255));
+            FreePanel.SetBounds(570, 620, 600, 100);
+            FreePanel.BackColor = Color.Transparent;
+            this.Controls.Add(FreePanel);
             
             // Closing & Minimization Bar
             // Closing 

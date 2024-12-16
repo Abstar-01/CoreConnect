@@ -91,6 +91,13 @@
         <Compile Include="Login\LoginTab.cs" />
         <Compile Include="Program.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="StudentViewPort\StudentFrame.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="StudentViewPort\StudentFrame.Designer.cs">
+          <DependentUpon>StudentFrame.cs</DependentUpon>
+        </Compile>
+        <Compile Include="StudentViewPort\StudentMainPanel.cs" />
         <EmbeddedResource Include="Properties\Resources.resx">
             <Generator>ResXFileCodeGenerator</Generator>
             <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -115,6 +122,8 @@
         <None Include="App.config"/>
     </ItemGroup>
     <ItemGroup>
+      <Folder Include="AdministrativeViewPort\" />
+      <Folder Include="InstructorViewPort\" />
       <Folder Include="Login\Images &amp; Icons\Icons\" />
       <Folder Include="Login\Images &amp; Icons\Images &amp; Videos\" />
       <Folder Include="SecrateryViewPort\" />
