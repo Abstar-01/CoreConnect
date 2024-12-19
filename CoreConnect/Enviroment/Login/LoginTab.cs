@@ -129,7 +129,7 @@ namespace Enviroment
                 Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Icons\\Hide.png"),
                 SizeMode = PictureBoxSizeMode.Normal,
             };
-            View.SetBounds(350,23,30,30);
+            View.SetBounds(350,19,30,30);
             View.Click += (sender, args) => {
                 viewing = !viewing;
                 if (viewing) {

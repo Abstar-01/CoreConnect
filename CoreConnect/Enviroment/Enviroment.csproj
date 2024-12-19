@@ -81,6 +81,7 @@
         <Compile Include="ApplicationLoader.Designer.cs">
           <DependentUpon>ApplicationLoader.cs</DependentUpon>
         </Compile>
+        <Compile Include="Login\Encryption.cs" />
         <Compile Include="Login\LoginFrame.cs">
           <SubType>Form</SubType>
         </Compile>
@@ -91,6 +92,12 @@
         <Compile Include="Login\LoginTab.cs" />
         <Compile Include="Program.cs"/>
         <Compile Include="Properties\AssemblyInfo.cs"/>
+        <Compile Include="StudentViewPort\ClassPagePanel.cs" />
+        <Compile Include="StudentViewPort\HomePagePanel.cs" />
+        <Compile Include="StudentViewPort\InboxPagePanel.cs" />
+        <Compile Include="StudentViewPort\ProfilePagePanel.cs" />
+        <Compile Include="StudentViewPort\RequestPagePanel.cs" />
+        <Compile Include="StudentViewPort\ResourcePagePanel.cs" />
         <Compile Include="StudentViewPort\StudentFrame.cs">
           <SubType>Form</SubType>
         </Compile>

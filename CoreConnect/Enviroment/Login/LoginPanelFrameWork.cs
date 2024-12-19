@@ -15,20 +15,28 @@ namespace Enviroment {
             this.BackgroundImage = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Images & Videos\\LoginBackground.jpg");
             this.BackgroundImageLayout = ImageLayout.None;
 
-            // Greating
-            roundPanel greatingBackground = new roundPanel(127, Color.White, Color.White);
-            greatingBackground.SetBounds(93, 50, 380, 127);
-            PictureBox greating = new PictureBox {
-                Size = new Size(350,113),
-                Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Images & Videos\\Hello Slider T.gif")
-            };
-            greating.SetBounds(15,7,350,113);
-            greatingBackground.Controls.Add(greating);
-            Controls.Add(greatingBackground);
-            
+            Label welcome = new Label();
+            welcome.Text = "WELCOME";
+            welcome.SetBounds(50,50,500,60);
+            welcome.BackColor = Color.Transparent;
+            welcome.ForeColor = Color.White;
+            welcome.Font = new Font("arial", 45, FontStyle.Regular);
+            Controls.Add(welcome);
+
+            Label subWelcome = new Label();
+            subWelcome.Text = "To CoreConnect";
+            subWelcome.SetBounds(65,110,250,20);
+            subWelcome.BackColor = Color.Transparent;
+            subWelcome.ForeColor = Color.White;
+            subWelcome.Font = new Font("arial", 16, FontStyle.Regular);
+            Controls.Add(subWelcome);
+
+            roundPanel line1 = new roundPanel(1, Color.White, Color.White);
+            line1.SetBounds(70,140,350,5);
+            Controls.Add(line1);
             
             roundPanel Logo = new roundPanel(350,Color.Transparent,Color.Transparent);
-            Logo.SetBounds(-50,400,350,350);
+            Logo.SetBounds(-25,375,350,350);
             Logo.BackgroundImage = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Images & Videos\\CONNECT.png");
             this.Controls.Add(Logo);
 

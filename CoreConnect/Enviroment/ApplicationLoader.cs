@@ -15,9 +15,6 @@ namespace Enviroment {
         private int count = 0, x = 20;
         private Timer timer;
         
-        // Login Form
-        private LoginFrame logframe = new LoginFrame();
-        
         public ApplicationLoader() {
             InitializeComponent();
             Size = new Size(680,510);
@@ -72,8 +69,10 @@ namespace Enviroment {
                 loader.SetBounds(100,400,20,20);
                 
                 Thread.Sleep(3000);
-                logframe.Show();
+                LoginFrame logframe = new LoginFrame();
                 this.Hide();
+                logframe.ShowDialog();
+                this.Close();
             });
             thread.Start();
             
