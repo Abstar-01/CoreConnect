@@ -95,6 +95,7 @@
         <Compile Include="StudentViewPort\ClassPagePanel.cs" />
         <Compile Include="StudentViewPort\HomePagePanel.cs" />
         <Compile Include="StudentViewPort\InboxPagePanel.cs" />
+        <Compile Include="StudentViewPort\LogoutPagePanel.cs" />
         <Compile Include="StudentViewPort\ProfilePagePanel.cs" />
         <Compile Include="StudentViewPort\RequestPagePanel.cs" />
         <Compile Include="StudentViewPort\ResourcePagePanel.cs" />

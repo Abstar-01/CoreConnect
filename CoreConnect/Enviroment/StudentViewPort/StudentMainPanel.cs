@@ -1,69 +1,192 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Enviroment.StudentViewPort {
     
     public class StudentMainPanel : roundPanel {
+        
+        // Tab Bar
+        Tab tabBar;
+        
+        // Home Page
+        internal HomePagePanel Home;
+        // Profile page
+        ProfilePagePanel Profile;
+        // Indox Page
+        InboxPagePanel inbox;
+        // Class Page
+        ClassPagePanel Class; 
+        // Resource Page
+        ResourcePagePanel Resource;
+        // Request Page
+        RequestPagePanel Request;
+        // Logout Page
+        LogoutPagePanel Logout;
+        
         public StudentMainPanel(int r, Color s, Color e) : base(r,s,e) {
             BackgroundImage = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Images\\Background.jpeg");
             this.DoubleBuffered = true;
             
-            Tab tabBar = new Tab(50, Color.FromArgb(123, 226, 219, 208), Color.FromArgb(123, 226, 219, 208));
-            tabBar.SetBounds(365,700,700,80);
-
-            tabBar.MouseEnter += (sender, args) => {
-                tabBar.start = Color.White;
-                tabBar.end = Color.White;
-                tabBar.Invalidate();
-            };
+            Home = new HomePagePanel(50, Color.FromArgb(123, 226, 219, 208), Color.FromArgb(123, 226, 219, 208));
+            Home.SetBounds(100,70,1230,650);
+            Controls.Add(Home);
             
-            tabBar.MouseLeave += (sender, args) => {
-                tabBar.start = Color.FromArgb(123, 226, 219, 208);
-                tabBar.end = Color.FromArgb(123, 226, 219, 208);
-                tabBar.Invalidate();
-            };
+            Profile = new ProfilePagePanel(50, Color.FromArgb(123, 226, 219, 208), Color.FromArgb(123, 226, 219, 208));
+            Profile.SetBounds(100,70,1230,650);
+            
+            inbox = new InboxPagePanel(50, Color.FromArgb(123, 226, 219, 208), Color.FromArgb(123, 226, 219, 208));
+            inbox.SetBounds(100,70,1230,650);
+            
+            Class = new ClassPagePanel(50, Color.FromArgb(123, 226, 219, 208), Color.FromArgb(123, 226, 219, 208));
+            Class.SetBounds(100,70,1230,650);
+            
+            Resource = new ResourcePagePanel(50, Color.FromArgb(123, 226, 219, 208), Color.FromArgb(123, 226, 219, 208));
+            Resource.SetBounds(100,70,1230,650);
+            
+            Request = new RequestPagePanel(50, Color.FromArgb(123, 226, 219, 208), Color.FromArgb(123, 226, 219, 208));
+            Request.SetBounds(100,70,1230,650);
+            
+            Logout = new LogoutPagePanel(50, Color.FromArgb(123, 226, 219, 208), Color.FromArgb(123, 226, 219, 208), this);
+            Logout.SetBounds(100,70,1230,650);
+            
+            tabBar = new Tab(50, Color.FromArgb(123, 226, 219, 208), Color.FromArgb(123, 226, 219, 208));
+            tabBar.SetBounds(365,740,700,90);
+            
+            tabBar.HomeLogo.Click  += (sender, args) => {
+                PageRemoval();
+                Controls.Add(Home);
+            }; 
+            tabBar.ProfileLogo.Click += (sender, args) => {
+                PageRemoval();
+                Controls.Add(Profile);
+            }; 
+            tabBar.InboxLogo.Click  += (sender, args) => {
+                PageRemoval();
+                Controls.Add(inbox);
+            }; 
+            tabBar.ClassLogo.Click += (sender, args) => {
+                PageRemoval();
+                Controls.Add(Class);
+            }; 
+            tabBar.ResourceLogo.Click  += (sender, args) => {
+                PageRemoval();
+                Controls.Add(Resource);
+            }; 
+            tabBar.RequestLogo.Click += (sender, args) => {
+                PageRemoval();
+                Controls.Add(Request);
+            }; 
+            tabBar.LogoutLogo.Click  += (sender, args) => {
+                PageRemoval();
+                Controls.Add(Logout);
+                Logout.starting();
+            }; 
             
             Controls.Add(tabBar);
             
-        }    
+            // Closing Button
+            
+            
+            
+            
+        }
+
+        public void PageRemoval() {
+            Controls.Remove(Home);
+            Controls.Remove(Profile);
+            Controls.Remove(inbox);
+            Controls.Remove(Class);
+            Controls.Remove(Resource);
+            Controls.Remove(Request);
+            Controls.Remove(Logout);
+        }
     }
 
     public class Tab : roundPanel {
+        
+        public PictureBox HomeLogo, ProfileLogo, InboxLogo, ClassLogo, ResourceLogo, RequestLogo, LogoutLogo;
+        public Timer HomeTimerUP, ProfileTimerUP, InboxTimerUP, ClassTimerUP, ResourceTimerUP, RequestTimerUP, LogoutTimerUP;
+        public Timer HomeTimerDOWN, ProfileTimerDOWN, InboxTimerDOWN, ClassTimerDOWN, ResourceTimerDOWN, RequestTimerDOWN, LogoutTimerDOWN;
+        
         public Tab(int r, Color s, Color e) : base(r, s, e) {
-            PictureBox HomeLogo = new PictureBox();
-            HomeLogo.BackgroundImage = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Icons\\HomeS.png");
-            HomeLogo.SetBounds(26, 5, 70, 70);
-            Controls.Add(HomeLogo);
+            this.DoubleBuffered = true;
+            // Home Button 
+            HomeLogo = new PictureBox();
+            TabButtonsImplementation(HomeLogo, 32,2,70,70,"C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Icons\\HomeS.png");
+            SettingMovement(HomeLogo, HomeTimerUP, HomeTimerDOWN,-8,3);
             
-            PictureBox ProfileLogo = new PictureBox();
-            ProfileLogo.BackgroundImage = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Icons\\ProfilePicS.png");
-            ProfileLogo.SetBounds(122, 5, 70, 70);
-            Controls.Add(ProfileLogo);
+            // Profile Button 
+            ProfileLogo = new PictureBox();
+            TabButtonsImplementation(ProfileLogo, 134, 15, 40, 40,"C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Icons\\ProfileS.png");
+            SettingMovement(ProfileLogo, ProfileTimerUP, ProfileTimerDOWN,6,15);
             
-            PictureBox InboxLogo = new PictureBox();
-            InboxLogo.BackgroundImage = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Icons\\InboxS.png");
-            InboxLogo.SetBounds(218, 5, 70, 70);
-            Controls.Add(InboxLogo);
+            // Inbox Button 
+            InboxLogo = new PictureBox();
+            TabButtonsImplementation(InboxLogo,206, 2, 70, 70,"C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Icons\\InboxS.png");
+            SettingMovement(InboxLogo, InboxTimerUP, InboxTimerDOWN,-8,2);
             
-            PictureBox ClassLogo = new PictureBox();
-            ClassLogo.BackgroundImage = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Icons\\ClassS.png");
-            ClassLogo.SetBounds(314, 5, 70, 70);
-            Controls.Add(ClassLogo);
+            // Class Button 
+            ClassLogo = new PictureBox();
+            TabButtonsImplementation(ClassLogo,308,5,60,60,"C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Icons\\ClassS.png");
+            SettingMovement(ClassLogo, ClassTimerUP,ClassTimerDOWN,-3,5);
             
-            PictureBox ResourceLogo = new PictureBox();
-            ResourceLogo.BackgroundImage = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Icons\\HomeS.png");
-            ResourceLogo.SetBounds(410, 5, 70, 70);
-            Controls.Add(ResourceLogo);
+            // Resource Button 
+            ResourceLogo = new PictureBox();
+            TabButtonsImplementation(ResourceLogo,400,2,70,70,"C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Icons\\ResourceS.png");
+            SettingMovement(ResourceLogo, ResourceTimerUP, ResourceTimerDOWN,-8,2);
             
-            PictureBox RequestLogo = new PictureBox();
-            RequestLogo.BackgroundImage = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Icons\\RequestS.png");
-            RequestLogo.SetBounds(506, 5, 70, 70);
-            Controls.Add(RequestLogo);
+            // Request Button 
+            RequestLogo = new PictureBox();
+            TabButtonsImplementation(RequestLogo, 502,5,60,60,"C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Icons\\RequestS.png");
+            SettingMovement(RequestLogo, RequestTimerUP, RequestTimerDOWN,-4,5);
             
-            PictureBox LogoutLogo = new PictureBox();
-            LogoutLogo.BackgroundImage = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Icons\\HomeS.png");
-            LogoutLogo.SetBounds(602, 5, 70, 70);
-            Controls.Add(LogoutLogo);
+            // Logout Button 
+            LogoutLogo = new PictureBox();
+            TabButtonsImplementation(LogoutLogo, 594,2,70,70,"C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Icons\\LogoutS.png");
+            SettingMovement(LogoutLogo, LogoutTimerUP, LogoutTimerDOWN,-8,2);
         }
+
+        public void TabButtonsImplementation(PictureBox p,int X, int Y, int width, int hieght, string s) {
+            p.BackgroundImage = Image.FromFile(s);
+            p.SetBounds(X, Y, width, hieght);
+            Controls.Add(p);
+        }
+
+        public void SettingMovement(PictureBox pan, Timer UP, Timer DOWN, int Max, int Min) {
+            pan.MouseEnter += (sender, args) => {
+                if(DOWN != null){DOWN.Stop();}
+                UP = new Timer {
+                    Interval = 10
+                };
+                UP.Tick += (o, eventArgs) => {
+                    int y = pan.Location.Y - 1, x = pan.Location.X;
+                    if (y > Max) {
+                        pan.SetBounds(x,y,pan.Width,pan.Height);
+                        pan.Invalidate();
+                    }else {
+                        UP.Stop();
+                    }
+                };
+                UP.Start();
+            };
+
+            pan.MouseLeave += (sender, args) => {
+                if(UP != null){UP.Stop();}
+                DOWN = new Timer {
+                    Interval = 10
+                };
+                DOWN.Tick += (o, eventArgs) => {
+                    int y = pan.Location.Y + 1, x = pan.Location.X;
+                    if (y < Min) {
+                        pan.SetBounds(x,y,pan.Width,pan.Height);
+                        pan.Invalidate();
+                    }else {
+                        DOWN.Stop();
+                    }
+                };
+                DOWN.Start();
+            };
+        } 
     }
 }
