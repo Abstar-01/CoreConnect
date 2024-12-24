@@ -8,7 +8,8 @@ namespace Enviroment.StudentViewPort {
         
         // Tab Bar
         Tab tabBar;
-        
+
+        internal Form form;
         // Home Page
         internal HomePagePanel Home;
         // Profile page
@@ -24,9 +25,11 @@ namespace Enviroment.StudentViewPort {
         // Logout Page
         LogoutPagePanel Logout;
         
-        public StudentMainPanel(int r, Color s, Color e) : base(r,s,e) {
+        public StudentMainPanel(int r, Color s, Color e, Form form) : base(r,s,e) {
             BackgroundImage = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Images\\Background.jpeg");
             this.DoubleBuffered = true;
+            
+            this.form = form;
             
             Home = new HomePagePanel(50, Color.FromArgb(123, 226, 219, 208), Color.FromArgb(123, 226, 219, 208));
             Home.SetBounds(100,70,1230,650);
@@ -86,10 +89,52 @@ namespace Enviroment.StudentViewPort {
             Controls.Add(tabBar);
             
             // Closing Button
+            roundPanel closingBackground = new roundPanel(40,Color.Transparent, Color.Transparent);
+            closingBackground.BackColor = Color.Transparent;
+            closingBackground.SetBounds(1360,10,39,39);
+            PictureBox ClosingButton = new PictureBox {
+                Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Icons\\Cancel.png")
+            };
+            ClosingButton.Click += (sender, args) => {
+                Application.Exit();
+            };
+            ClosingButton.MouseEnter += (sender, args) => {
+                closingBackground.start = Color.Red;
+                closingBackground.end = Color.Red;
+                closingBackground.Invalidate();
+            };
+            ClosingButton.MouseLeave += (sender, args) => {
+                closingBackground.start = Color.Transparent;
+                closingBackground.end = Color.Transparent;
+                closingBackground.BackColor = Color.Transparent;
+                closingBackground.Invalidate();
+            };
+            closingBackground.Controls.Add(ClosingButton);
+            Controls.Add(closingBackground);
             
-            
-            
-            
+            // Minimization Button
+            roundPanel MinimizeBackground = new roundPanel(40,Color.Transparent, Color.Transparent);
+            MinimizeBackground.BackColor = Color.Transparent;
+            MinimizeBackground.SetBounds(1315,10,39,39);
+            PictureBox MinimizeButton = new PictureBox {
+                Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\StudentViewPort\\Images & Icons\\Icons\\Minus.png")
+            };
+            MinimizeButton.Click += (sender, args) => {
+                form.WindowState = FormWindowState.Minimized;
+            };
+            MinimizeButton.MouseEnter += (sender, args) => {
+                MinimizeBackground.start = Color.FromArgb(185, 203, 165);
+                MinimizeBackground.end = Color.FromArgb(202, 219, 183);
+                MinimizeBackground.Invalidate();
+            };
+            MinimizeButton.MouseLeave += (sender, args) => {
+                MinimizeBackground.start = Color.Transparent;
+                MinimizeBackground.end = Color.Transparent;
+                MinimizeBackground.BackColor = Color.Transparent;
+                MinimizeBackground.Invalidate();
+            };
+            MinimizeBackground.Controls.Add(MinimizeButton);
+            Controls.Add(MinimizeBackground);
         }
 
         public void PageRemoval() {

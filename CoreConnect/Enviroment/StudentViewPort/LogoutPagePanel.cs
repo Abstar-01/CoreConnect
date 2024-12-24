@@ -60,7 +60,10 @@ namespace Enviroment.StudentViewPort {
             count--;
             if (count == 0){
                 timer.Stop();
-                Application.Exit();
+                LoginFrame frame = new LoginFrame();
+                studentPanel.form.Hide();
+                frame.ShowDialog();
+                studentPanel.form.Close();
             }else {
                 CounterTitle.Text = count.ToString();
                 CounterTitle.Invalidate();

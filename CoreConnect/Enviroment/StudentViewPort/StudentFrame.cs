@@ -14,7 +14,7 @@ namespace Enviroment.StudentViewPort
             StartPosition = FormStartPosition.CenterScreen;
             Load += CustomForm_Load;
             
-            StudentMainPanel main = new StudentMainPanel(50,Color.Transparent,Color.Transparent);
+            StudentMainPanel main = new StudentMainPanel(50,Color.Transparent,Color.Transparent, this);
             main.BackColor = Color.Transparent;
             main.SetBounds(0,0,1430,850);
             Controls.Add(main);

@@ -65,9 +65,6 @@ namespace Enviroment {
                 Thread.Sleep(500);
                 Title2.SetBounds(280, 200, 380, 120);
                 
-                Thread.Sleep(500);
-                loader.SetBounds(100,400,20,20);
-                
                 Thread.Sleep(3000);
                 LoginFrame logframe = new LoginFrame();
                 this.Hide();

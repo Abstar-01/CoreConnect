@@ -131,11 +131,12 @@ namespace Enviroment {
         public Color start, end;
 
         public roundPanel(int radius, Color start, Color end ) {
+            this.DoubleBuffered = true;
             this.radius = radius;
             this.start = start;
             this.end = end;
         }
-
+        
         protected override void OnPaint(PaintEventArgs e){
             base.OnPaint(e);
             GraphicsPath path = new GraphicsPath();
