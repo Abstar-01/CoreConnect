@@ -11,6 +11,12 @@ namespace Enviroment.StudentViewPort {
             label.SetBounds(0,0,450,200);
             label.Font = new Font("arial", 50, FontStyle.Bold);
             Controls.Add(label);
+            
+            
+            
+            
+            
+            
         }
     }
 }

@@ -123,7 +123,7 @@ namespace Enviroment
             };
             passwordbackground.Controls.Add(passwordField);
             
-            //Reveal Eye Button
+            // Reveal Eye Button
             PictureBox View = new PictureBox {
                 Size = new Size(30,30),
                 Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Icons\\Hide.png"),
@@ -146,7 +146,7 @@ namespace Enviroment
             };
             passwordbackground.Controls.Add(View);
             
-            //Remember Sction
+            // Remember Section
             PictureBox check = new PictureBox {
                 Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Icons\\CheckCircle.png"),
                 Size = new Size(25,25),
@@ -161,15 +161,43 @@ namespace Enviroment
                     check.Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Icons\\CheckCircle.png");
                     check.Invalidate();
                 }
-            }; 
+            };
+
+            Label rememberMe = new Label();
+            rememberMe.Text = "Remember My Password";
+            rememberMe.SetBounds(170,275,250,23);
+            rememberMe.Font = new Font("arial", 12, FontStyle.Regular);
+            rememberMe.ForeColor = Color.White;
+            Controls.Add(rememberMe);
+            
+            
             Controls.Add(check);
             
             // SiginBackground
             roundPanel signBackground = new roundPanel(54, Color.FromArgb(110, 255, 255, 255), Color.FromArgb(124, 255, 255, 255));
-            signBackground.SetBounds(175,300,250,60);
+            Label siginLabel = new Label();
+            siginLabel.Text = "Sign In";
+            siginLabel.Font = new Font("arial",20, FontStyle.Regular);
+            siginLabel.SetBounds(75,15,200,50);
+            siginLabel.ForeColor = Color.White;
+            signBackground.Controls.Add(siginLabel);
+            siginLabel.MouseEnter += (sender, args) => {
+                signBackground.start = Color.FromArgb(180, 255, 255, 255);
+                signBackground.end = Color.FromArgb(140, 255, 255, 255);
+                signBackground.Invalidate();
+            };
+            siginLabel.MouseLeave += (sender, args) => {
+                signBackground.start = Color.FromArgb(110, 255, 255, 255);
+                signBackground.end = Color.FromArgb(110, 255, 255, 255);
+                signBackground.Invalidate();
+            };
+            
+            
+            
+            signBackground.SetBounds(175,310,250,60);
             signBackground.MouseEnter += (sender, args) => {
-                signBackground.start = Color.White;
-                signBackground.end = Color.White;
+                signBackground.start = Color.FromArgb(180, 255, 255, 255);
+                signBackground.end = Color.FromArgb(140, 255, 255, 255);
                 signBackground.Invalidate();
             };
             

@@ -36,10 +36,8 @@ namespace Enviroment {
             
             this.Region = new Region(path);
         }
-        protected override CreateParams CreateParams
-        {
-            get
-            {
+        protected override CreateParams CreateParams {
+            get {
                 CreateParams cp = base.CreateParams;
                 cp.ExStyle |= 0x02000000; // WS_EX_COMPOSITED: Enables double buffering
                 cp.Style |= 0x02000000;  // WS_CLIPCHILDREN: Avoid redrawing child controls

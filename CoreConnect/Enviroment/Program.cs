@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Enviroment.AdministrativeViewPort;
+using Enviroment.InstructorViewPort;
 using Enviroment.StudentViewPort;
 
 namespace Enviroment {
@@ -15,7 +17,7 @@ namespace Enviroment {
         static void Main(){
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StudentFrame());
+            Application.Run(new LoginFrame());
         }
     }
 }
