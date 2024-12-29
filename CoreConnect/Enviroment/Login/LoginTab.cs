@@ -151,7 +151,7 @@ namespace Enviroment
                 Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Icons\\CheckCircle.png"),
                 Size = new Size(25,25),
             };
-            check.SetBounds(140,270,25,25);
+            check.SetBounds(170,270,25,25);
             check.Click += (sender, args) => {
                 remb = !remb;
                 if (remb) {
@@ -165,7 +165,7 @@ namespace Enviroment
 
             Label rememberMe = new Label();
             rememberMe.Text = "Remember My Password";
-            rememberMe.SetBounds(170,275,250,23);
+            rememberMe.SetBounds(210,275,250,23);
             rememberMe.Font = new Font("arial", 12, FontStyle.Regular);
             rememberMe.ForeColor = Color.White;
             Controls.Add(rememberMe);
@@ -191,8 +191,6 @@ namespace Enviroment
                 signBackground.end = Color.FromArgb(110, 255, 255, 255);
                 signBackground.Invalidate();
             };
-            
-            
             
             signBackground.SetBounds(175,310,250,60);
             signBackground.MouseEnter += (sender, args) => {

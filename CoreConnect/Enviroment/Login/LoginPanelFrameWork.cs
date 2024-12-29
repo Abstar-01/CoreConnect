@@ -43,11 +43,16 @@ namespace Enviroment {
             roundPanel LogoHandler = new roundPanel(650, Color.White, Color.White);
             LogoHandler.SetBounds(-250,350,650,650);
             this.Controls.Add(LogoHandler);
+
+            Panel SlidingBackground = new Panel();
+            SlidingBackground.BackColor = Color.Transparent;
+            SlidingBackground.SetBounds(560,0,620,1460);
+            Controls.Add(SlidingBackground);
             
             roundPanel LoginTitleBackground = new roundPanel(50, Color.FromArgb(56, 255, 255, 255), Color.FromArgb(89, 255, 228, 196));
-            LoginTitleBackground.SetBounds(570, -50, 600, 250);
+            LoginTitleBackground.SetBounds(10, -50, 600, 250);
             LoginTitleBackground.BackColor = Color.Transparent;
-            this.Controls.Add(LoginTitleBackground);
+            SlidingBackground.Controls.Add(LoginTitleBackground);
             
             Label LoginTitle = new Label();
             LoginTitle.Text = "LOGIN";
@@ -57,14 +62,67 @@ namespace Enviroment {
             LoginTitleBackground.Controls.Add(LoginTitle);
             
             LoginTab tab = new LoginTab(50, Color.FromArgb(56, 255, 255, 255), Color.FromArgb(89, 255, 228, 196));
-            tab.SetBounds(570, 220, 600, 380);
+            tab.SetBounds(10, 220, 600, 380);
             tab.BackColor = Color.Transparent;
-            this.Controls.Add(tab);
+            SlidingBackground.Controls.Add(tab);
 
-            roundPanel FreePanel = new roundPanel(50,Color.FromArgb(56, 255, 255, 255),Color.FromArgb(56, 255, 255, 255));
-            FreePanel.SetBounds(570, 620, 600, 100);
-            FreePanel.BackColor = Color.Transparent;
-            this.Controls.Add(FreePanel);
+            roundPanel SignUpBackground = new roundPanel(50,Color.FromArgb(56, 255, 255, 255),Color.FromArgb(56, 255, 255, 255));
+            SignUpBackground.SetBounds(10, 620, 600, 80);
+            SignUpBackground.BackColor = Color.Transparent;
+
+            roundPanel Bar1 = new roundPanel(20,Color.FromArgb(56, 255, 255, 255),Color.FromArgb(56, 255, 255, 255));
+            Bar1.SetBounds(30,30,150,20);
+            SignUpBackground.Controls.Add(Bar1);
+            
+            // Sign Up Label
+            Label SignUpLabel = new Label();
+            SignUpLabel.Text = "Create an account";
+            SignUpLabel.Font = new Font("Arial Rounded MT Bold", 17, FontStyle.Regular);
+            SignUpLabel.SetBounds(183, 24, 225, 25);
+            SignUpLabel.ForeColor = Color.White;
+            SignUpBackground.Controls.Add(SignUpLabel);
+            SignUpLabel.Click += (sender, args) => {
+                if (SlidingBackground.Location.Y != -605) {
+                    Timer slideTimer = new Timer();
+                    slideTimer.Interval = 1; 
+                    int targetY = -605;
+                    int currentY = SlidingBackground.Location.Y;
+
+                    slideTimer.Tick += (o, eventArgs) => {
+                        
+                        int step = Math.Max(1, (currentY - targetY) / 10); // Decrease the step as it gets closer
+                        currentY -= step;
+
+                        if (currentY > targetY) {
+                            SlidingBackground.SetBounds(560, currentY, 620, 1460);
+                            SlidingBackground.Invalidate();
+                        } else {
+                            SlidingBackground.SetBounds(560, targetY, 620, 1460);
+                            SlidingBackground.Invalidate();
+                            slideTimer.Stop();
+                            slideTimer.Dispose();
+                        }
+                    };
+
+                    slideTimer.Start();
+                }
+            };
+            
+            
+            SlidingBackground.Controls.Add(SignUpBackground);
+            
+            roundPanel Bar2 = new roundPanel(20,Color.FromArgb(56, 255, 255, 255),Color.FromArgb(56, 255, 255, 255));
+            Bar2.SetBounds(410,30,150,20);
+            SignUpBackground.Controls.Add(Bar2);
+            
+            // Sign Up Tab Declaration
+            SignupTab signupTab = new SignupTab(50, Color.FromArgb(56, 255, 255, 255), Color.FromArgb(56, 255, 255, 255));
+            signupTab.SetBounds(10,720,600,480);
+            SlidingBackground.Controls.Add(signupTab);
+            
+            
+            
+            
             
             // Closing & Minimization Bar
             // Closing 
