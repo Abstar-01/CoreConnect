@@ -17,7 +17,7 @@ namespace Enviroment {
         static void Main(){
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new InstructorFrame());
+            Application.Run(new ());
         }
     }
 }

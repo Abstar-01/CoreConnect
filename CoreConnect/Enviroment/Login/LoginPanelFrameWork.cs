@@ -184,7 +184,7 @@ namespace Enviroment {
             CloseButton.SetBounds(-1,0,40,40);
 
             CloseButton.Click += (sender, args) => {
-                form.Close();
+                Application.Exit();
             }; 
             
             CloseButton.MouseEnter += (sender, args) => {
