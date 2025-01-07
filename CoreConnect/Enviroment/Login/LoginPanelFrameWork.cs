@@ -6,11 +6,14 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using AForge.Imaging.Filters;
 using ContentAlignment = System.Drawing.ContentAlignment;
+using System.Data.Sql;
+using System.Data.SqlClient;
 
 namespace Enviroment {
     public class LoginPanelFrameWork : roundPanel {
         
         public LoginPanelFrameWork(int r, Color s, Color e, Form form) : base(r,s,e) {
+            
             this.DoubleBuffered = true;
             this.BackgroundImage = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Images & Videos\\LoginBackground.jpg");
             this.BackgroundImageLayout = ImageLayout.None;
@@ -46,7 +49,7 @@ namespace Enviroment {
 
             Panel SlidingBackground = new Panel();
             SlidingBackground.BackColor = Color.Transparent;
-            SlidingBackground.SetBounds(560,0,620,1460);
+            SlidingBackground.SetBounds(560,-600,620,1460);
             Controls.Add(SlidingBackground);
             
             roundPanel LoginTitleBackground = new roundPanel(50, Color.FromArgb(56, 255, 255, 255), Color.FromArgb(89, 255, 228, 196));
@@ -90,7 +93,7 @@ namespace Enviroment {
 
                     slideTimer.Tick += (o, eventArgs) => {
                         
-                        int step = Math.Max(1, (currentY - targetY) / 10); // Decrease the step as it gets closer
+                        int step = Math.Max(5, (currentY - targetY) / 10); // Decrease the step as it gets closer
                         currentY -= step;
 
                         if (currentY > targetY) {
@@ -107,8 +110,6 @@ namespace Enviroment {
                     slideTimer.Start();
                 }
             };
-            
-            
             SlidingBackground.Controls.Add(SignUpBackground);
             
             roundPanel Bar2 = new roundPanel(20,Color.FromArgb(56, 255, 255, 255),Color.FromArgb(56, 255, 255, 255));
@@ -119,10 +120,59 @@ namespace Enviroment {
             SignupTab signupTab = new SignupTab(50, Color.FromArgb(56, 255, 255, 255), Color.FromArgb(56, 255, 255, 255));
             signupTab.SetBounds(10,720,600,480);
             SlidingBackground.Controls.Add(signupTab);
+
+            signupTab.BackToLogin.Click += (sender, args) => {
+                if (SlidingBackground.Location.Y != 0) {
+                    Timer slideTimer = new Timer();
+                    slideTimer.Interval = 1; 
+                    int targetY = 0;
+                    int currentY = SlidingBackground.Location.Y;
+
+                    slideTimer.Tick += (o, eventArgs) => {
+                        
+                        int step = Math.Max(5, -(currentY - targetY) / 10); // Decrease the step as it gets closer
+                        currentY += step;
+
+                        if (currentY < targetY) {
+                            SlidingBackground.SetBounds(560, currentY, 620, 1460);
+                            SlidingBackground.Invalidate();
+                        } else {
+                            SlidingBackground.SetBounds(560, targetY, 620, 1460);
+                            SlidingBackground.Invalidate();
+                            slideTimer.Stop();
+                            slideTimer.Dispose();
+                        }
+                    };
+
+                    slideTimer.Start();
+                }
+                
+            };
+            
+            roundPanel BackButtonBackground = new roundPanel(30,Color.FromArgb(56, 255, 255, 255), Color.FromArgb(56, 255, 255, 255));
+            BackButtonBackground.SetBounds(10,1220,290,60);
+
+            PictureBox BackArrow = new PictureBox {
+                Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Icons\\Back.png"),
+                BackgroundImageLayout = ImageLayout.None
+            };
+            BackArrow.SetBounds(10,18,25,25);
+            BackButtonBackground.Controls.Add(BackArrow);
             
             
+            SlidingBackground.Controls.Add(BackButtonBackground);
+            
+            roundPanel ProceedButtonBackground = new roundPanel(30,Color.FromArgb(56, 255, 255, 255), Color.FromArgb(56, 255, 255, 255));
+            ProceedButtonBackground.SetBounds(315,1220,290,60);
+            PictureBox ForwardArrow = new PictureBox {
+                Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Icons\\Forward.png"),
+                BackgroundImageLayout = ImageLayout.None
+            };
+            ForwardArrow.SetBounds(245,18,25,25);
+            ProceedButtonBackground.Controls.Add(ForwardArrow);
             
             
+            SlidingBackground.Controls.Add(ProceedButtonBackground);
             
             // Closing & Minimization Bar
             // Closing 
