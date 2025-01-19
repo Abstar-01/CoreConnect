@@ -47,7 +47,7 @@ namespace Enviroment {
             LogoHandler.SetBounds(-250,350,650,650);
             this.Controls.Add(LogoHandler);
 
-            Panel SlidingBackground = new Panel();
+            roundPanel SlidingBackground = new roundPanel(1,Color.Transparent, Color.Transparent);
             SlidingBackground.BackColor = Color.Transparent;
             SlidingBackground.SetBounds(560,-600,620,1460);
             Controls.Add(SlidingBackground);
@@ -149,6 +149,7 @@ namespace Enviroment {
                 
             };
             
+            // Back Button
             roundPanel BackButtonBackground = new roundPanel(30,Color.FromArgb(56, 255, 255, 255), Color.FromArgb(56, 255, 255, 255));
             BackButtonBackground.SetBounds(10,1220,290,60);
 
@@ -157,11 +158,26 @@ namespace Enviroment {
                 BackgroundImageLayout = ImageLayout.None
             };
             BackArrow.SetBounds(10,18,25,25);
+            BackButtonBackground.Click += (sender, args) => {
+                signupTab.Authentication.Show();
+                signupTab.SetDetails.Hide();
+            };
             BackButtonBackground.Controls.Add(BackArrow);
             
+            Label BackLabel = new Label();
+            BackLabel.Text = "Back";
+            BackLabel.Font = new Font("Century Gothic", 18, FontStyle.Regular);
+            BackLabel.SetBounds(104,14,150,50);
+            BackLabel.ForeColor = Color.White;
+            BackLabel.Click += (sender, args) => {
+                signupTab.Authentication.Show();
+                signupTab.SetDetails.Hide();
+            };
+            BackButtonBackground.Controls.Add(BackLabel);
             
             SlidingBackground.Controls.Add(BackButtonBackground);
             
+            // Forward Button
             roundPanel ProceedButtonBackground = new roundPanel(30,Color.FromArgb(56, 255, 255, 255), Color.FromArgb(56, 255, 255, 255));
             ProceedButtonBackground.SetBounds(315,1220,290,60);
             PictureBox ForwardArrow = new PictureBox {
@@ -169,8 +185,22 @@ namespace Enviroment {
                 BackgroundImageLayout = ImageLayout.None
             };
             ForwardArrow.SetBounds(245,18,25,25);
+            ProceedButtonBackground.Click += (sender, args) => {
+                signupTab.SetDetails.Show();
+                signupTab.Authentication.Hide();
+            };
             ProceedButtonBackground.Controls.Add(ForwardArrow);
             
+            Label ForwardLabel = new Label();
+            ForwardLabel.Text = "Next";
+            ForwardLabel.Font = new Font("Century Gothic", 18, FontStyle.Regular);
+            ForwardLabel.SetBounds(75,14,150,50);
+            ForwardLabel.ForeColor = Color.White;
+            ForwardLabel.Click += (sender, args) => {
+                signupTab.SetDetails.Show();
+                signupTab.Authentication.Hide();
+            };
+            ProceedButtonBackground.Controls.Add(ForwardLabel);
             
             SlidingBackground.Controls.Add(ProceedButtonBackground);
             

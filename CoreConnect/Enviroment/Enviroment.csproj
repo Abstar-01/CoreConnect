@@ -88,13 +88,13 @@
         <Compile Include="ApplicationLoader.Designer.cs">
           <DependentUpon>ApplicationLoader.cs</DependentUpon>
         </Compile>
-        <Compile Include="InstructorViewPort\Attendence.cs">
+        <Compile Include="InstructorViewPort\InstructorFrame.cs">
           <SubType>Form</SubType>
         </Compile>
-        <Compile Include="InstructorViewPort\Attendence.Designer.cs">
-          <DependentUpon>Attendence.cs</DependentUpon>
+        <Compile Include="InstructorViewPort\InstructorFrame.Designer.cs">
+          <DependentUpon>InstructorFrame.cs</DependentUpon>
         </Compile>
-        <Compile Include="InstructorViewPort\AttendencePanel.cs" />
+        <Compile Include="InstructorViewPort\InstructorPanel.cs" />
         <Compile Include="Login\Encryption.cs" />
         <Compile Include="Login\LoginFrame.cs">
           <SubType>Form</SubType>

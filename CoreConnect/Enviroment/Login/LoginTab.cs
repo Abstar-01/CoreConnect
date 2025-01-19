@@ -26,7 +26,7 @@ namespace Enviroment
             this.Focus();
             
             //UserNameField
-            usernameField.SetBounds(80,25,250,50);
+            usernameField.SetBounds(80,20,250,50);
             usernameField.Text = "Username";
             usernameField.Font = new Font("Arial Rounded MT Bold",16, FontStyle.Regular);
             usernameField.BorderStyle = BorderStyle.None;

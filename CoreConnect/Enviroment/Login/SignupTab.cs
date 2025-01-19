@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
@@ -6,6 +7,12 @@ namespace Enviroment {
     public class SignupTab : roundPanel{
         internal PictureBox BackToLogin;
         internal TextBox FirstName, LastName, SID, Box1, Box2, Box3, Box4, Box5, Box6;
+        internal roundPanel Authentication = new roundPanel(1,Color.Transparent,Color.Transparent);
+        internal roundPanel SetDetails = new roundPanel(1,Color.Transparent,Color.Transparent);
+        
+        // USERS INFORMATION STORAGE
+        private TextBox Username, Password, ConfirmPassword;
+        private bool passVisability = false;
         
         public SignupTab(int r, Color s, Color e) : base(r,s,e) {
             BackToLogin = new PictureBox {
@@ -21,10 +28,7 @@ namespace Enviroment {
             BackToLoginLabel.Font = new Font("Century Gothic", 16, FontStyle.Regular);
             this.Controls.Add(BackToLoginLabel);
             
-            
             // AUTHENTICATION PANEL 
-            
-            Panel Authentication = new Panel();
             Authentication.BackColor = Color.Transparent;
             Authentication.SetBounds(50,70,500,400);
             
@@ -85,6 +89,81 @@ namespace Enviroment {
             BoxFormate(Authentication, Box6,Box6,Box5 ,360,330);
             
             Controls.Add(Authentication);
+            
+            // USER NAME & PASSWORD PANEL
+            SetDetails.BackColor = Color.Transparent;
+            SetDetails.SetBounds(50,70,500,400);
+            SetDetails.Hide();
+            
+            Label DetailsLabel = new Label();
+            DetailsLabel.Text = "User Information";
+            DetailsLabel.Font = new Font("SimSun", 28, FontStyle.Regular);
+            DetailsLabel.ForeColor = Color.White;
+            DetailsLabel.SetBounds(10,10,350,40);
+            DetailsLabel.BackColor = Color.Transparent;
+            SetDetails.Controls.Add(DetailsLabel);
+            
+            roundPanel line2  = new roundPanel(1, Color.Transparent, Color.Transparent);
+            line2.BackColor = Color.White;
+            line2.SetBounds(15,57, 350,1);
+            SetDetails.Controls.Add(line2);
+            
+            Username = new TextBox();
+            FieldableFormate(SetDetails, Username, "Username", 42,105,165,30, 210,100,270,50);
+            
+            Password = new TextBox();
+            PassFieldableFormate(SetDetails, Password, "Password","Password",47,170,160,30,210,165,270,50);
+            
+            ConfirmPassword = new TextBox();
+            PassFieldableFormate(SetDetails, ConfirmPassword, "Confirmation","Password",0,235,210,30, 210,230,270,50);
+            
+            roundPanel SubmitPanel  = new roundPanel(25,Color.FromArgb(115, 255, 255, 255), Color.FromArgb(115, 255, 255, 255));
+            Label SubmitLabel = new Label();
+            
+            SubmitPanel.SetBounds(150, 330, 200,60);
+            SubmitPanel.Click += (sender, args) => {
+
+            };
+
+            SubmitPanel.MouseEnter += (sender, args) => {
+                SubmitLabel.ForeColor = Color.Gray;
+                SubmitPanel.start = Color.White;
+                SubmitPanel.end = Color.White;
+            };
+
+            SubmitPanel.MouseLeave += (sender, args) => {
+                SubmitLabel.ForeColor = Color.White;
+                SubmitPanel.start = Color.FromArgb(115, 255, 255, 255);
+                SubmitPanel.end = Color.FromArgb(115, 255, 255, 255);
+            };
+            
+            SubmitLabel.Text = "Submit";
+            SubmitLabel.SetBounds(53,14,140,50);
+            SubmitLabel.Font = new Font("Arial rounded border", 20, FontStyle.Regular);
+            SubmitLabel.ForeColor = Color.White;
+            SubmitPanel.Controls.Add(SubmitLabel);
+            
+            SubmitLabel.Click += (sender, args) => {
+
+            };
+            
+            SubmitLabel.MouseEnter += (sender, args) => {
+                SubmitLabel.ForeColor = Color.Gray;
+                SubmitPanel.start = Color.White;
+                SubmitPanel.end = Color.White;
+            };
+            
+            SubmitLabel.MouseLeave += (sender, args) => {
+                SubmitLabel.ForeColor = Color.White;
+                SubmitPanel.start = Color.FromArgb(115, 255, 255, 255);
+                SubmitPanel.end = Color.FromArgb(115, 255, 255, 255);
+            };
+            
+            SetDetails.Controls.Add(SubmitPanel);
+            
+            
+            
+            this.Controls.Add(SetDetails);
         }
 
         public void FieldableFormate(Panel panel,TextBox box, string  s, int LabelX, int LabelY, int LabelWidth, int LabelHeight, int PanelX, int PaneelY, int PanelWidth, int PanelHeight) {
@@ -121,6 +200,69 @@ namespace Enviroment {
             panel.Controls.Add(Background);
         }
 
+        public void PassFieldableFormate(Panel panel,TextBox box, string  s, string ts, int LabelX, int LabelY, int LabelWidth, int LabelHeight, int PanelX, int PaneelY, int PanelWidth, int PanelHeight) {
+            Label label = new Label();
+            label.Text = s + " :";
+            label.Font = new Font("Century Gothic", 20, FontStyle.Regular);
+            label.ForeColor = Color.White;
+            label.SetBounds(LabelX,LabelY,LabelWidth,LabelHeight);
+            panel.Controls.Add(label);
+            
+            roundPanel Background = new roundPanel(50, Color.Transparent, Color.Transparent);
+            Background.BackColor = Color.White;
+            Background.SetBounds(PanelX,PaneelY,PanelWidth,PanelHeight);
+
+            PictureBox View = new PictureBox {
+                Size = new Size(30,30),
+                Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Icons\\Hide.png"),
+                SizeMode = PictureBoxSizeMode.Normal,
+            };
+            View.SetBounds(230,14,30,30);
+            View.Click += (sender, args) => {
+                passVisability = !passVisability;
+                if (passVisability) {
+                    View.Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Icons\\Eye.png");
+                    box.PasswordChar = '\0';
+                    View.Invalidate();
+                }else {
+                    View.Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Icons\\Hide.png");
+                    if (box.Text != "Password") {
+                        box.PasswordChar = '*';
+                    }
+                    View.Invalidate();
+                }
+            };
+            Background.Controls.Add(View);
+            
+            box.Text = ts;
+            box.SetBounds(25,12,190,80);
+            box.BackColor = Color.White;
+            box.ForeColor = Color.FromArgb(186, 196, 170);
+            box.BorderStyle = BorderStyle.None;
+            box.Font = new Font("", 16, FontStyle.Regular);
+
+            box.Enter += (sender, args) => {
+                if (!passVisability) {
+                    box.PasswordChar = '*';
+                }
+                if (box.Text == "Password") {
+                    box.Text = "";
+                }
+            };
+            box.Leave += (sender, args) => {
+                if (passVisability) {
+                    box.PasswordChar = '\0';
+                }
+                if (box.Text.Length == 0) {
+                    box.PasswordChar = '\0';
+                    box.Text = "Password";
+                }
+            };
+            
+            Background.Controls.Add(box);
+            panel.Controls.Add(Background);
+        }
+        
         public void BoxFormate(Panel panel, TextBox Box , TextBox NextBox, TextBox PriorBox,int X, int Y) {
             roundPanel BoxBackground = new roundPanel(15, Color.White, Color.White);
             BoxBackground.SetBounds(X,Y, 50,60);
