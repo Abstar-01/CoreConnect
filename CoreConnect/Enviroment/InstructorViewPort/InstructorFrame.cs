@@ -14,7 +14,7 @@ namespace Enviroment.InstructorViewPort
             StartPosition = FormStartPosition.CenterScreen;
             Load += CustomForm_Load;
 
-            InstructorPanel instructorPanel = new InstructorPanel(50, Color.Transparent, Color.Transparent, this);
+            InstructorPanel instructorPanel = new InstructorPanel(50, Color.FromArgb(72, 85, 99), Color.FromArgb(41, 50, 60), this);
             instructorPanel.BackColor = Color.Transparent;
             instructorPanel.SetBounds(0,0,1500,820);
             this.Controls.Add(instructorPanel);

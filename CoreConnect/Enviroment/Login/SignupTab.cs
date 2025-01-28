@@ -9,9 +9,11 @@ namespace Enviroment {
         internal TextBox FirstName, LastName, SID, Box1, Box2, Box3, Box4, Box5, Box6;
         internal roundPanel Authentication = new roundPanel(1,Color.Transparent,Color.Transparent);
         internal roundPanel SetDetails = new roundPanel(1,Color.Transparent,Color.Transparent);
+        private Label AuthenticationLabel;
         
         // USERS INFORMATION STORAGE
         private TextBox Username, Password, ConfirmPassword;
+        private Label DetailsLabel;
         private bool passVisability = false;
         
         public SignupTab(int r, Color s, Color e) : base(r,s,e) {
@@ -32,13 +34,23 @@ namespace Enviroment {
             Authentication.BackColor = Color.Transparent;
             Authentication.SetBounds(50,70,500,400);
             
-            Label AuthenticationLabel = new Label();
+            AuthenticationLabel = new Label();
             AuthenticationLabel.Text = "Authentication";
             AuthenticationLabel.Font = new Font("SimSun", 28, FontStyle.Regular);
             AuthenticationLabel.ForeColor = Color.White;
             AuthenticationLabel.SetBounds(10,10,290,40);
             AuthenticationLabel.BackColor = Color.Transparent;
             Authentication.Controls.Add(AuthenticationLabel);
+
+            PictureBox RemoveButton1 = new PictureBox() {
+                Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Icons\\Reset.png"),
+                BackgroundImageLayout = ImageLayout.None
+            };
+            RemoveButton1.SetBounds(450,5,30,30);
+            RemoveButton1.Click += (sender, args) => {
+                ClearPage1();
+            };
+            Authentication.Controls.Add(RemoveButton1);
             
             roundPanel line  = new roundPanel(1, Color.Transparent, Color.Transparent);
             line.BackColor = Color.White;
@@ -95,7 +107,17 @@ namespace Enviroment {
             SetDetails.SetBounds(50,70,500,400);
             SetDetails.Hide();
             
-            Label DetailsLabel = new Label();
+            PictureBox RemoveButton2 = new PictureBox() {
+                Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Icons\\Reset.png"),
+                BackgroundImageLayout = ImageLayout.None
+            };
+            RemoveButton2.SetBounds(450,5,30,30);
+            RemoveButton2.Click += (sender, args) => {
+                ClearPage2();
+            };
+            SetDetails.Controls.Add(RemoveButton2);
+            
+            DetailsLabel = new Label();
             DetailsLabel.Text = "User Information";
             DetailsLabel.Font = new Font("SimSun", 28, FontStyle.Regular);
             DetailsLabel.ForeColor = Color.White;
@@ -120,7 +142,7 @@ namespace Enviroment {
             roundPanel SubmitPanel  = new roundPanel(25,Color.FromArgb(115, 255, 255, 255), Color.FromArgb(115, 255, 255, 255));
             Label SubmitLabel = new Label();
             
-            SubmitPanel.SetBounds(150, 330, 200,60);
+            SubmitPanel.SetBounds(100, 330, 300,60);
             SubmitPanel.Click += (sender, args) => {
 
             };
@@ -138,7 +160,7 @@ namespace Enviroment {
             };
             
             SubmitLabel.Text = "Submit";
-            SubmitLabel.SetBounds(53,14,140,50);
+            SubmitLabel.SetBounds(97,14,140,50);
             SubmitLabel.Font = new Font("Arial rounded border", 20, FontStyle.Regular);
             SubmitLabel.ForeColor = Color.White;
             SubmitPanel.Controls.Add(SubmitLabel);
@@ -161,9 +183,26 @@ namespace Enviroment {
             
             SetDetails.Controls.Add(SubmitPanel);
             
-            
-            
             this.Controls.Add(SetDetails);
+        }
+
+        public void ClearPage1() {
+            AuthenticationLabel.Focus();
+            FirstName.Text = "First Name";
+            LastName.Text = "Last Name";
+            SID.Text = "Student ID";
+            Box1.Text = ""; Box2.Text = ""; Box3.Text = "";
+            Box4.Text = ""; Box5.Text = ""; Box6.Text = "";
+            
+        }
+        
+        public void ClearPage2() {
+            DetailsLabel.Focus();
+            Username.Text = "Username";
+            Password.Text = "Password";
+            Password.PasswordChar = '\0';
+            ConfirmPassword.Text = "Password";
+            ConfirmPassword.PasswordChar = '\0';
         }
 
         public void FieldableFormate(Panel panel,TextBox box, string  s, int LabelX, int LabelY, int LabelWidth, int LabelHeight, int PanelX, int PaneelY, int PanelWidth, int PanelHeight) {
@@ -212,12 +251,12 @@ namespace Enviroment {
             Background.BackColor = Color.White;
             Background.SetBounds(PanelX,PaneelY,PanelWidth,PanelHeight);
 
-            PictureBox View = new PictureBox {
-                Size = new Size(30,30),
-                Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Icons\\Hide.png"),
-                SizeMode = PictureBoxSizeMode.Normal,
-            };
-            View.SetBounds(230,14,30,30);
+            PictureBox View = new PictureBox(); 
+            View.Size = new Size(30, 30);
+            View.Image = Image.FromFile("C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\Login\\Images & Icons\\Icons\\Hide.png");
+            View.SizeMode = PictureBoxSizeMode.Normal;
+            
+            View.SetBounds(225,12,30,30);
             View.Click += (sender, args) => {
                 passVisability = !passVisability;
                 if (passVisability) {
@@ -289,5 +328,6 @@ namespace Enviroment {
             BoxBackground.Controls.Add(Box);
             panel.Controls.Add(BoxBackground);
         }
+        
     }
 }

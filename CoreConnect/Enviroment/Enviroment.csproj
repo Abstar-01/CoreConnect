@@ -88,6 +88,9 @@
         <Compile Include="ApplicationLoader.Designer.cs">
           <DependentUpon>ApplicationLoader.cs</DependentUpon>
         </Compile>
+        <Compile Include="InstructorViewPort\ClassPage.cs" />
+        <Compile Include="InstructorViewPort\HomePage.cs" />
+        <Compile Include="InstructorViewPort\InfoPage.cs" />
         <Compile Include="InstructorViewPort\InstructorFrame.cs">
           <SubType>Form</SubType>
         </Compile>
@@ -95,6 +98,11 @@
           <DependentUpon>InstructorFrame.cs</DependentUpon>
         </Compile>
         <Compile Include="InstructorViewPort\InstructorPanel.cs" />
+        <Compile Include="InstructorViewPort\LogoutPage.cs" />
+        <Compile Include="InstructorViewPort\ProfilePage.cs" />
+        <Compile Include="InstructorViewPort\RequestPage.cs" />
+        <Compile Include="InstructorViewPort\Resource.cs" />
+        <Compile Include="Login\DatabaseInformationRetrival.cs" />
         <Compile Include="Login\Encryption.cs" />
         <Compile Include="Login\LoginFrame.cs">
           <SubType>Form</SubType>

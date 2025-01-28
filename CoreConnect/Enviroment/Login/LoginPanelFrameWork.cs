@@ -8,6 +8,7 @@ using AForge.Imaging.Filters;
 using ContentAlignment = System.Drawing.ContentAlignment;
 using System.Data.Sql;
 using System.Data.SqlClient;
+using Enviroment.StudentViewPort;
 
 namespace Enviroment {
     public class LoginPanelFrameWork : roundPanel {
@@ -47,9 +48,45 @@ namespace Enviroment {
             LogoHandler.SetBounds(-250,350,650,650);
             this.Controls.Add(LogoHandler);
 
+            Label Greeting = new Label();
+            Greeting.Text = "Core Connect is an all-in-one portal designed for students, staff, and administrators of the university.";
+            Greeting.SetBounds(70,150,350,70);
+            Greeting.ForeColor = Color.White;
+            Greeting.BackColor = Color.Transparent;
+            Greeting.Font = new Font("arial", 12, FontStyle.Regular);
+            this.Controls.Add(Greeting);
+
+
+            PictureBox point1 = new PictureBox();
+            string Point1path = "C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\InstructorViewPort\\Image & Icon\\Icons\\1.png";
+            string Point1text = "Enter in your Username and ID Code";
+            PointFormat(point1, 70,220,400,25,Point1text,Point1path);
+            
+            roundPanel ConnectLine1 = new roundPanel(1,Color.White, Color.White);
+            ConnectLine1.SetBounds(85,240,1,15);
+            this.Controls.Add(ConnectLine1);
+            
+            PictureBox point2 = new PictureBox();
+            string Point2path = "C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\InstructorViewPort\\Image & Icon\\Icons\\2.png";
+            string Point2text = "Enter in your Password";
+            PointFormat(point2, 70,255,400,25,Point2text,Point2path);
+            
+            roundPanel ConnectLine2 = new roundPanel(1,Color.White, Color.White);
+            ConnectLine2.SetBounds(85,275,1,15);
+            this.Controls.Add(ConnectLine2);
+            
+            PictureBox point3 = new PictureBox();
+            string Point3path = "C:\\Users\\user\\Desktop\\CoreConnect\\CoreConnectSRC\\CoreConnect\\Enviroment\\InstructorViewPort\\Image & Icon\\Icons\\3.png";
+            string Point3text = "Click Sign In and access your personalized dashboard";
+            PointFormat(point3, 70,290,400,25,Point3text,Point3path);
+            
+            
+            ///////////////////////////
+            // Sliding Panel Remark //
+            /////////////////////////
             roundPanel SlidingBackground = new roundPanel(1,Color.Transparent, Color.Transparent);
             SlidingBackground.BackColor = Color.Transparent;
-            SlidingBackground.SetBounds(560,-600,620,1460);
+            SlidingBackground.SetBounds(560,0,620,1460);
             Controls.Add(SlidingBackground);
             
             roundPanel LoginTitleBackground = new roundPanel(50, Color.FromArgb(56, 255, 255, 255), Color.FromArgb(89, 255, 228, 196));
@@ -188,6 +225,7 @@ namespace Enviroment {
             ProceedButtonBackground.Click += (sender, args) => {
                 signupTab.SetDetails.Show();
                 signupTab.Authentication.Hide();
+                
             };
             ProceedButtonBackground.Controls.Add(ForwardArrow);
             
@@ -261,6 +299,22 @@ namespace Enviroment {
             
             MinPanel.Controls.Add(MinButton);
             this.Controls.Add(MinPanel);
+        }
+
+        public void PointFormat(PictureBox point,int x, int y, int length,int height, string text, string path) {
+            point.Image = Image.FromFile(path);
+            point.BackgroundImageLayout = ImageLayout.None;
+            point.SetBounds(x,y,30,30);
+            point.BackColor = Color.Transparent;
+            this.Controls.Add(point);
+
+            Label FollowingText = new Label();
+            FollowingText.Text = text;
+            FollowingText.Font = new Font("arial", 12, FontStyle.Regular);
+            FollowingText.ForeColor = Color.White;
+            FollowingText.BackColor = Color.Transparent;
+            FollowingText.SetBounds(x + 40,y + 5,length,height);
+            this.Controls.Add(FollowingText);
         }
     }
 

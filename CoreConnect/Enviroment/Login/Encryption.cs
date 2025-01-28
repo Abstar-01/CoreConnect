@@ -11,7 +11,6 @@
                 int newAscii = (asciiValue + (i + 1) * primeOffset) % 94 + 32;
                 hashedChars[i] = (char)newAscii;
             }
-
             return new string(hashedChars);
         }
     }
